@@ -1,0 +1,34 @@
+A very simple bookmarking system for file system navigation with bash. 
+
+mk is a shell script, that marks the $(pwd) with the argument as a $KEY
+It adds an entry into ~/.bookmarks and ~/.bookmarks_auto
+
+bk is a shell function added to the bashrc, that invokes book, and passes
+the $KEY:$VALUE to cd
+
+bk is an eager match. It does not need to be the entirety of the $KEY to make 
+a match. And if there are multiple matches, it will return the first $KEY it 
+reaches in the ~/.bookmarks file. 
+
+Example:
+
+user@~/Downloads> mk download
+user@~/Documents> mk documents
+
+user@~> bk do 
+
+# Will cd into download:$VALUE (~/Downloads)
+# since it will be the first entry that matches
+
+user@~> bk doc
+
+# Will cd into documents:$VALUE (~/Documents)
+
+
+This system is not packed with features. It is very simple, and it does have
+auto completion. However, marked aliases will not show up for auto completion
+until after a new $SHELL session has been started, after creating the alias.
+
+To remove entries, you may manually view the ~/.bookmarks file, and the 
+~/.bookmarks_auto with your favorite text editor, and remove the offending
+alias lines. Each entry must be separated by a newline when/if you edit the file.

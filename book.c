@@ -40,7 +40,7 @@ char* match_key_get_new_value (char* key, char* search_buffer)
 	field_del[1] = '\0';
 
 	char *token = NULL;
-	char tok_del = ':';
+	char tok_del[2] = ":";
 	size_t key_len = strlen (key);
 	size_t tky_len = 0;
 	size_t tok_len = 0;
@@ -49,7 +49,7 @@ char* match_key_get_new_value (char* key, char* search_buffer)
 	while (token)
 	{
 		tok_len = strlen (token);
-		tky_len = strcspn (token, &tok_del);
+		tky_len = strcspn (token, tok_del);
 		if (tky_len >= key_len)
 		{
 			if ((strncmp (token, key, key_len) == 0))
